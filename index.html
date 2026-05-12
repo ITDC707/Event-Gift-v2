@@ -3,103 +3,173 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>5月活動大禮包 - 最終完整版</title>
+  
+  <title>5月活動大禮包</title>
 
-  <style>
-    /* 這裡就是你遺失的「裝潢」：背景與邊框 */
-    body {
-      margin: 0;
-      font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
-      background-color: #0a191f; 
-      background-image: radial-gradient(circle at center, rgba(44, 83, 100, 0.4) 0%, rgba(10, 25, 31, 0.95) 100%);
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      flex-direction: column;
-      overflow-x: hidden;
-    }
+  <meta property="og:title" content="5月份活動指南">
+  <meta property="og:description" content="探索專為國際學生設計的職涯發展、企業說明會與媒合活動。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ray67861.github.io/Event-Gift/preview-image.png"> 
 
-    /* 金色邊框 */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      border: 15px solid transparent;
-      border-image: linear-gradient(45deg, #b8860b, #ffd700, #b8860b) 1;
-      pointer-events: none; 
-      z-index: 100;
-    }
+<style>
+  /* --- 豪華背景系統 (來自第一版) --- */
+  body {
+    margin: 0;
+    font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
+    background-color: #0a191f; 
+    background-image: 
+      radial-gradient(circle at center, rgba(44, 83, 100, 0.4) 0%, rgba(10, 25, 31, 0.95) 100%),
+      url('https://www.transparenttextures.com/patterns/old-map.png');
+    background-attachment: fixed;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 60px 20px;
+    overflow-x: hidden;
+    position: relative;
+    flex-direction: column;
+  }
 
-    /* 禮物盒樣式 */
-    .gift-box {
-      width: 200px; height: 200px; background: #e63946; 
-      position: relative; border-radius: 30px; cursor: pointer;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5); transition: 0.3s;
-    }
-    .gift-box:hover { transform: scale(1.05) rotate(2deg); }
+  /* 華麗金色外框 */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border: 20px solid transparent;
+    border-image: linear-gradient(45deg, #b8860b 0%, #ffd700 25%, #ffffff 50%, #ffd700 75%, #b8860b 100%) 1;
+    pointer-events: none; 
+    z-index: 100;
+    opacity: 0.9;
+    box-shadow: inset 0 0 30px rgba(255, 215, 0, 0.3);
+  }
 
-    /* 絲帶與蝴蝶結的 CSS (這是畫出圖案的關鍵) */
-    .ribbon-v { position: absolute; width: 40px; height: 100%; background: #facc15; left: 50%; transform: translateX(-50%); }
-    .ribbon-h { position: absolute; width: 100%; height: 40px; top: 50%; transform: translateY(-50%); background: #facc15; }
-    .bow {
-      position: absolute; top: -30px; left: 50%; transform: translateX(-50%);
-      width: 120px; height: 60px; background: #facc15; border-radius: 50px; z-index: 10;
-    }
+  /* 背景裝飾：飛機與圖示 */
+  .bg-decor { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+  .plane { position: absolute; font-size: 55px; filter: drop-shadow(0 0 20px rgba(255,255,255,0.4)); animation: flight 22s linear infinite; z-index: 5; }
+  @keyframes flight {
+    0% { transform: translate(-15vw, 60vh) rotate(15deg); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translate(115vw, 10vh) rotate(15deg); opacity: 0; }
+  }
+  .item { position: absolute; font-size: 90px; filter: opacity(0.35) brightness(1.2); }
+  .globe { top: 12%; left: 10%; }
+  .passport { bottom: 15%; left: 12%; }
+  .compass { top: 15%; right: 12%; }
+  .map { bottom: 12%; right: 10%; }
 
-    /* 活動卡片設定 */
-    .activities { display: none; flex-wrap: wrap; justify-content: center; gap: 30px; padding: 20px; }
-    .activity-card {
-      background: white; color: #333; padding: 30px; border-radius: 30px;
-      width: 320px; text-align: center; border: 5px solid #facc15; text-decoration: none;
-    }
-    .click-go { color: #ef4444; font-weight: 900; margin-top: 15px; }
+  .container { text-align: center; max-width: 1250px; width: 100%; z-index: 10; position: relative; }
 
-    .open { animation: openBox 0.8s forwards; }
-    @keyframes openBox { 100% { transform: scale(0) rotate(360deg); opacity: 0; } }
-  </style>
+  /* --- 禮物盒區域 --- */
+  .gift-box {
+    width: 250px; height: 250px; background: #e63946; margin: 60px auto 20px auto; 
+    position: relative; border-radius: 45px; cursor: pointer;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.8); transition: transform 0.4s;
+    z-index: 20;
+  }
+  .gift-box:hover { transform: scale(1.05) rotate(2deg); }
+  
+  /* 絲帶與蝴蝶結 (解決之前消失的問題) */
+  .ribbon-v { position: absolute; width: 50px; height: 100%; background: #facc15; left: 50%; transform: translateX(-50%); z-index: 2; }
+  .ribbon-h { position: absolute; width: 100%; height: 50px; top: 50%; transform: translateY(-50%); background: #facc15; z-index: 1; }
+  .bow {
+    position: absolute; top: -40px; left: 50%; transform: translateX(-50%);
+    width: 180px; height: 90px; z-index: 15;
+  }
+  .bow::before, .bow::after {
+    content: ""; position: absolute; width: 80px; height: 80px; background: #facc15;
+    border-radius: 70% 70% 10% 70%; box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+  }
+  .bow::before { left: 10px; transform: rotate(-35deg); }
+  .bow::after { right: 10px; border-radius: 70% 70% 70% 10%; transform: rotate(35deg); }
+
+  /* 提示文字 */
+  .click-hint { color: #ffd700; font-size: 22px; font-weight: 900; animation: hintPulse 2s infinite ease-in-out; margin-bottom: 40px; }
+  @keyframes hintPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); text-shadow: 0 0 20px #ffd700; } }
+
+  /* --- 活動卡片區 --- */
+  .activities { display: none; flex-wrap: wrap; justify-content: center; gap: 40px; animation: fadeIn 1s forwards; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+  .title { font-size: 38px; color: #ffd700; margin-bottom: 60px; font-weight: 800; text-shadow: 0 4px 25px rgba(0,0,0,0.9); }
+  
+  .activity-card {
+    background: rgba(255, 255, 255, 0.98); color: #1e293b;
+    padding: 40px 30px; border-radius: 40px; width: 380px; 
+    border: 6px solid #facc15; transition: 0.4s; text-decoration: none;
+    box-shadow: 0 0 0 8px white, 0 35px 70px rgba(0,0,0,0.7);
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .activity-card:hover { transform: translateY(-15px); box-shadow: 0 0 0 10px #ffd700, 0 45px 90px rgba(0,0,0,0.8); }
+  
+  .event-date { font-size: 17px; color: #64748b; margin-bottom: 15px; font-weight: 800; }
+  .activity-card h3 { font-size: 21px; color: #ef4444; margin: 0 0 20px 0; text-align: center; }
+  
+  /* 報名按鈕區 */
+  .reg-time { width: 100%; border-top: 1px dashed #cbd5e1; padding-top: 15px; font-size: 14px; color: #64748b; margin-top: auto; }
+  .click-go { margin-top: 15px; font-size: 16px; font-weight: 900; color: #ef4444; }
+
+  /* 開箱動畫 */
+  .open { animation: openBox 0.8s forwards; }
+  @keyframes openBox { 100% { transform: scale(0) rotate(720deg); opacity: 0; } }
+</style>
 </head>
 
 <body>
-  <div id="gift-area">
-    <div id="gift" class="gift-box" onclick="openGift()">
-      <div class="bow"></div>
-      <div class="ribbon-v"></div>
-      <div class="ribbon-h"></div>
+  <div class="bg-decor">
+    <div class="plane">✈️</div>
+    <div class="item globe">🌍</div>
+    <div class="item passport">🛂</div>
+    <div class="item compass">🧭</div>
+    <div class="item map">🗺️</div>
+  </div>
+
+  <div class="container">
+    <div id="gift-area">
+      <div id="gift" class="gift-box" onclick="openGift()">
+        <div class="bow"></div>
+        <div class="ribbon-v"></div>
+        <div class="ribbon-h"></div>
+      </div>
+      <div class="click-hint" onclick="openGift()">🎁 點擊開啟 / Click to Unbox</div>
     </div>
-    <p style="text-align: center; color: #ffd700; margin-top: 20px; font-weight: bold;">🎁 點擊開啟 Surprise!</p>
+
+    <div id="activities" class="activities">
+      <div class="title" style="width: 100%;">✨ 5月精選活動推薦 ✨</div>
+      
+      <a href="https://itouch.cycu.edu.tw/go/?w=15434@acpm3" target="_blank" class="activity-card">
+        <div class="event-date">2026 / 05 / 15</div>
+        <h3>日月光半導體製造股份有限公司說明會<br>ASE Company Info Session</h3>
+        <p>走進晶片世界，掌握科技未來<br>Step into the world of chips and master the future of technology</p>
+        <div class="reg-time">🕒 報名：即日起～2026.05.14</div>
+        <div class="click-go">👉 點擊前往報名 / Register</div>
+      </a>
+
+      <a href="https://itouch.cycu.edu.tw/go/?w=15435@acpm3" target="_blank" class="activity-card">
+        <div class="event-date">2026 / 05 / 20</div>
+        <h3>跨領域人才職涯講座<br>Interdisciplinary Talent Career Seminar</h3>
+        <p>跨出領域界線，開啟無限可能<br>Break out of boundaries and create unlimited career opportunities</p>
+        <div class="reg-time">🕒 報名：即日起～2026.05.19</div>
+        <div class="click-go">👉 點擊前往報名 / Register</div>
+      </a>
+    </div>
   </div>
 
-  <div id="activities" class="activities">
-    <h2 style="width: 100%; text-align: center; color: #ffd700;">✨ 5月專屬活動推薦 ✨</h2>
-    
-    <a href="https://itouch.cycu.edu.tw/go/?w=15434@acpm3" target="_blank" class="activity-card">
-      <h3>ASE 說明會</h3>
-      <p>走進晶片世界，掌握科技未來</p>
-      <div class="click-go">👉 點擊報名 / Register</div>
-    </a>
-
-    <a href="https://itouch.cycu.edu.tw/go/?w=15435@acpm3" target="_blank" class="activity-card">
-      <h3>職涯發展座談會</h3>
-      <p>跨出領域界線，開啟無限可能</p>
-      <div class="click-go">👉 點擊報名 / Register</div>
-    </a>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script>
-    function openGift() {
-      const gift = document.getElementById("gift");
-      const giftArea = document.getElementById("gift-area");
-      const activities = document.getElementById("activities");
-      gift.classList.add("open");
-      confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-      setTimeout(() => {
-        giftArea.style.display = "none";
-        activities.style.display = "flex";
-      }, 750);
-    }
-  </script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+function openGift() {
+  const gift = document.getElementById("gift");
+  const giftArea = document.getElementById("gift-area");
+  const activities = document.getElementById("activities");
+  gift.classList.add("open");
+  confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
+  setTimeout(() => {
+    giftArea.style.display = "none";
+    activities.style.display = "flex";
+  }, 750);
+}
+</script>
 </body>
 </html>

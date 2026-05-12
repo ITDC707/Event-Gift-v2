@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>活動開箱</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* 防止動畫時出現捲軸 */
+  }
+
+  /* 容器 */
+  .container {
+    text-align: center;
+    perspective: 1000px; /* 增加 3D 視角感 */
+  }
+
+  /* 禮物盒整體 (外框) */
+  .gift-box {
+    width: 160px;
+    height: 160px;
+    background: #ef4444; /* 盒子主色：紅色 */
+    margin: auto;
+    position: relative;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease;
+    /* 確保裡面的絲帶不會超出邊框 */
+    overflow: visible; 
+  }
+
+  /* 滑鼠懸停時微動，增加互動感 */
+  .gift-box:hover {
+    transform: translateY(-5px) rotate(2deg);
+  }
+
+  /* --- 絲帶主體 (十字形) --- */
+  
+  /* 絲帶共用設定 */
+  .ribbon-v, .ribbon-h {
+    position: absolute;
+    background: #facc15; /* 絲帶顏色：金色 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+
+  /* 垂直絲帶 */
+  .ribbon-v {
+    width: 30px;
+    height: 100%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* 水平絲帶 */
+  .ribbon-h {
+    width: 100%;
+    height: 30px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  /* --- 上方立體蝴蝶結 (結頭) --- */
+  
+  /* 蝴蝶結容器 */
+  .bow {
+    position: absolute;
+    top: -25px; /* 讓它飄在盒子上方 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 40px;
+    z-index: 10;
+  }
+
+  /* 蝴蝶結的兩個圈圈 (使用 pseudo-elements) */
+  .bow::before, .bow::after {
+    content: "";
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    background: #facc15; /* 金色 */
+    border-radius: 50% 50% 0 50%; /* 調整形狀像葉子/圈圈 */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+
+  /* 左邊的圈圈 */
+  .bow::before {
+    left: 0;
+    transform: rotate(-15deg);
+  }
+
+  /* 右邊的圈圈 */
+  .bow::after {
+    right: 0;
+    transform: rotate(105deg) scaleX(-1); /* 鏡射並旋轉 */
+  }
+
+  /* 蝴蝶結中心的結 */
+  .bow-center {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #eab308; /* 稍微深一點的金色，增加立體感 */
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  /* --- 開箱動畫 (優化版) --- */
+  .open {
+    animation: openBox 1s forwards ease-in-out;
+  }
+
+  @keyframes openBox {
+    0% { transform: scale(1) rotate(0deg); opacity: 1; }
+    20% { transform: scale(1.1) rotate(-5deg); }
+    40% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(0) rotate(1080deg); opacity: 0; }
+  }
+
+  /* 修正活動區卡片預設隱藏，避免點擊前就佔位 */
+  .activities {
+    display: none;
+    opacity: 0;
+    margin-top: 30px;
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div id="gift" class="gift-box" onclick="openGift()">
+    <div class="ribbon"></div>
+  </div>
+
+  <div id="activities" class="activities">
+    <div class="title">🎉 三場活動等你選擇</div>
+
+    <div class="activity-card">
+      <h3>半導體產業講座</h3>
+      <p>了解全球最熱門產業趨勢</p>
+    </div>
+
+    <div class="activity-card">
+      <h3>企業徵才說明會</h3>
+      <p>直接與企業 HR 面對面</p>
+    </div>
+
+    <div class="activity-card">
+      <h3>職涯探索工作坊</h3>
+      <p>幫助你找到未來方向</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function openGift() {
+  const gift = document.getElementById("gift");
+  const activities = document.getElementById("activities");
+
+  gift.classList.add("open");
+
+  setTimeout(() => {
+    gift.style.display = "none";
+    activities.style.display = "block";
+  }, 700);
+}
+</script>
+
+</body>
+</html>

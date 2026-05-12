@@ -1,133 +1,278 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>活動開箱</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <title>5月活動大禮包</title>
+
+  <meta property="og:title" content="5月份活動指南">
+  <meta property="og:description" content="探索專為國際學生設計的職涯發展、企業說明會與媒合活動。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ray67861.github.io/Event-Gift/preview-image.png"> 
 
 <style>
+  /* --- 豪華背景系統 --- */
   body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #0f172a, #1e293b);
+    font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
+    background-color: #0a191f; 
+    background-image: 
+      radial-gradient(circle at center, rgba(44, 83, 100, 0.4) 0%, rgba(10, 25, 31, 0.95) 100%),
+      url('https://www.transparenttextures.com/patterns/old-map.png');
+    background-attachment: fixed;
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  .container {
-    text-align: center;
-    perspective: 1000px;
-  }
-
-  /* 禮物盒整體 */
-  .gift-box {
-    width: 160px;
-    height: 160px;
-    background: #ef4444;
-    margin: auto;
+    min-height: 100vh;
+    padding: 60px 20px;
+    overflow-x: hidden;
     position: relative;
-    border-radius: 20px;
-    cursor: pointer;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-    transition: transform 0.3s ease;
+    flex-direction: column;
   }
 
-  .gift-box:hover {
-    transform: translateY(-5px) rotate(2deg);
-  }
-
-  /* 絲帶與蝴蝶結 */
-  .ribbon-v, .ribbon-h {
-    position: absolute;
-    background: #facc15;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  }
-  .ribbon-v { width: 30px; height: 100%; left: 50%; transform: translateX(-50%); }
-  .ribbon-h { width: 100%; height: 30px; top: 50%; transform: translateY(-50%); }
-
-  .bow {
-    position: absolute;
-    top: -25px; left: 50%;
-    transform: translateX(-50%);
-    width: 80px; height: 40px;
-    z-index: 10;
-  }
-  .bow::before, .bow::after {
+  body::before {
     content: "";
-    position: absolute;
-    width: 45px; height: 45px;
-    background: #facc15;
-    border-radius: 50% 50% 0 50%;
-  }
-  .bow::before { left: 0; transform: rotate(-15deg); }
-  .bow::after { right: 0; transform: rotate(105deg) scaleX(-1); }
-
-  /* 開箱動畫 */
-  .open {
-    animation: openBox 1s forwards ease-in-out;
-  }
-  @keyframes openBox {
-    0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(0) rotate(720deg); opacity: 0; }
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border: 20px solid transparent;
+    border-image: linear-gradient(45deg, #b8860b 0%, #ffd700 25%, #ffffff 50%, #ffd700 75%, #b8860b 100%) 1;
+    pointer-events: none; 
+    z-index: 100;
+    opacity: 0.9;
+    box-shadow: inset 0 0 30px rgba(255, 215, 0, 0.3);
   }
 
-  /* 活動卡片區 */
-  .activities {
-    display: none;
-    animation: fadeIn 0.5s forwards;
+  .corner-flare {
+    position: fixed;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(255, 247, 0, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 101;
   }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  .tf { top: -100px; left: -100px; }
+  .br { bottom: -100px; right: -100px; }
+
+  .bg-decor { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+  .plane { position: absolute; font-size: 55px; filter: drop-shadow(0 0 20px rgba(255,255,255,0.4)); animation: flight 22s linear infinite; z-index: 5; }
+  @keyframes flight {
+    0% { transform: translate(-15vw, 60vh) rotate(15deg); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translate(115vw, 10vh) rotate(15deg); opacity: 0; }
   }
+  .item { position: absolute; font-size: 90px; filter: opacity(0.35) brightness(1.2); transition: 0.5s; }
+  .globe { top: 12%; left: 10%; }
+  .passport { bottom: 15%; left: 12%; }
+  .compass { top: 15%; right: 12%; }
+  .map { bottom: 12%; right: 10%; }
+
+  .container { text-align: center; max-width: 1250px; width: 100%; z-index: 10; position: relative; }
+
+  /* --- 禮物盒區域 --- */
+  .gift-box {
+    width: 280px; height: 280px; background: #e63946; margin: 60px auto 20px auto; 
+    position: relative; border-radius: 45px; cursor: pointer;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.8); transition: transform 0.4s;
+    z-index: 20;
+  }
+  .gift-box:hover { transform: scale(1.05) rotate(2deg); }
+  .ribbon-v { position: absolute; width: 55px; height: 100%; background: #facc15; left: 50%; transform: translateX(-50%); z-index: 2; box-shadow: inset 0 0 10px rgba(0,0,0,0.1); }
+  .ribbon-h { position: absolute; width: 100%; height: 55px; top: 50%; transform: translateY(-50%); background: #facc15; z-index: 1; box-shadow: inset 0 0 10px rgba(0,0,0,0.1); }
+  
+  .bow { 
+    position: absolute; 
+    top: -50px; left: 50%; 
+    transform: translateX(-50%); 
+    width: 200px; height: 100px; 
+    z-index: 15; 
+  }
+  .bow::before, .bow::after { 
+    content: ""; 
+    position: absolute; 
+    width: 90px; height: 90px; 
+    background: #facc15; 
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+    transform-origin: bottom center; 
+  }
+  .bow::before { 
+    left: 15px; top: 5px;
+    border-radius: 70% 70% 10% 70%;
+    transform: rotate(-35deg); 
+  }
+  .bow::after { 
+    right: 15px; top: 5px;
+    border-radius: 70% 70% 70% 10%;
+    transform: rotate(35deg); 
+  }
+  .bow-center { 
+    position: absolute; 
+    width: 70px; height: 70px; 
+    background: #eab308; 
+    border-radius: 50%; 
+    top: 60%; left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 16; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+
+  /* --- 活動卡片區 --- */
+  .click-hint { color: #ffd700; font-size: 22px; font-weight: 900; cursor: pointer; text-shadow: 0 0 15px rgba(255, 215, 0, 0.6); animation: hintPulse 2s infinite ease-in-out; margin-bottom: 40px; letter-spacing: 1px; }
+  .click-hint small { display: block; font-size: 14px; font-weight: 400; margin-top: 5px; opacity: 0.8; }
+  @keyframes hintPulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; text-shadow: 0 0 25px rgba(255, 215, 0, 0.9); } }
+  
+  .open { animation: openBox 0.8s forwards; }
+  @keyframes openBox { 100% { transform: scale(0) rotate(540deg); opacity: 0; } }
+
+  .activities { display: none; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 40px; animation: fadeIn 1s ease-out forwards; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+  .title { font-size: 38px; color: #ffd700; margin-bottom: 60px; font-weight: 800; text-shadow: 0 4px 25px rgba(0,0,0,0.9); line-height: 1.5; }
+  
   .activity-card {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    margin: 15px auto;
-    border-radius: 15px;
-    border: 1px solid rgba(255,255,255,0.2);
-    width: 250px;
+    background: rgba(255, 255, 255, 0.98); 
+    color: #1e293b;
+    padding: 40px 30px;
+    border-radius: 40px;
+    width: 380px; 
+    min-height: 480px;
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;
+    border: 6px solid #facc15;
+    box-shadow: 0 0 0 8px white, 0 0 0 13px #eab308, 0 35px 70px rgba(0,0,0,0.7);
+    transition: 0.4s;
+    box-sizing: border-box;
+    backdrop-filter: blur(10px);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .activity-card:hover { transform: translateY(-15px) scale(1.02); box-shadow: 0 0 0 8px white, 0 0 0 15px #ffd700, 0 45px 90px rgba(0,0,0,0.8); }
+  
+  .event-date { font-size: 17px; color: #64748b; margin-bottom: 25px; font-weight: 800; }
+  .activity-card h3 { font-size: 21px; margin: 0 0 25px 0; color: #ef4444; line-height: 1.5; font-weight: 900; }
+  .activity-card p { font-size: 16px; color: #334155; line-height: 1.8; margin-bottom: 20px; }
+
+  /* 🕒 報名期間樣式 */
+  .reg-time {
+    margin-top: auto; 
+    padding-top: 15px;
+    border-top: 1px dashed #cbd5e1;
+    width: 100%;
+    font-size: 14px;
+    color: #64748b;
+    font-weight: 600;
+  }
+  .reg-time b {
+    color: #0f172a;
+    display: block;
+    margin-top: 4px;
+    font-size: 16px;
+  }
+
+  /* 👉 點擊前往報名樣式 */
+  .click-go {
+    margin-top: 15px;
+    font-size: 15px;
+    font-weight: 900;
+    color: #ef4444;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: 0.3s;
+    width: 100%;
+    justify-content: center;
+  }
+  .activity-card:hover .click-go {
+    transform: translateX(5px);
+    color: #b91c1c;
+  }
+
+  /* ✨ 手機版響應式優化 ✨ */
+  @media (max-width: 600px) {
+    .container { padding: 0 10px; }
+    .title { font-size: 28px; margin-bottom: 30px; }
+    .activity-card {
+      width: 92%; padding: 30px 20px; min-height: auto;
+      border-width: 4px;
+      box-shadow: 0 0 0 5px white, 0 0 0 10px #eab308, 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .activity-card h3 { font-size: 18px; margin-bottom: 15px; }
+    .activity-card p { font-size: 14px; }
+    .event-date { font-size: 14px; margin-bottom: 15px; }
+    .reg-time { font-size: 12px; }
+    .reg-time b { font-size: 14px; }
+    .click-go { font-size: 13px; }
   }
 </style>
 </head>
 
 <body>
+  <div class="corner-flare tf"></div>
+  <div class="corner-flare br"></div>
 
-<div class="container">
-  <div id="gift" class="gift-box" onclick="openGift()">
-    <div class="bow"></div>
-    <div class="ribbon-v"></div>
-    <div class="ribbon-h"></div>
+  <div class="bg-decor">
+    <div class="plane">✈️</div>
+    <div class="item globe">🌍</div>
+    <div class="item passport">🛂</div>
+    <div class="item compass">🧭</div>
+    <div class="item map">🗺️</div>
   </div>
 
-  <div id="activities" class="activities">
-    <h2>🎉 精選活動推薦</h2>
-    <div class="activity-card">
-      <h3>半導體產業講座</h3>
-      <p>了解全球最熱門產業趨勢</p>
+  <div class="container">
+    <div id="gift-area">
+      <div id="gift" class="gift-box" onclick="openGift()">
+        <div class="bow"><div class="bow-center"></div></div>
+        <div class="ribbon-v"></div>
+        <div class="ribbon-h"></div>
+      </div>
+      <div class="click-hint" onclick="openGift()">
+        🎁 點擊開啟
+        <small>Click to Unbox</small>
+      </div>
     </div>
-    <div class="activity-card">
-      <h3>企業徵才說明會</h3>
-      <p>直接與企業 HR 面對面</p>
+
+    <div id="activities" class="activities">
+      <div class="title" style="width: 100%;">✨ 5月活動推薦 ✨<br>✨ May Event Recommendations ✨</div>
+      
+      <a href="https://itouch.cycu.edu.tw/go/?w=15434@acpm3" target="_blank" class="activity-card">
+        <div class="event-date">2026 / 05 / 15</div>
+        <h3>日月光半導體製造股份有限公司說明會<br>ASE Company Info Session</h3>
+        <p>走進晶片世界，掌握科技未來<br>Step into the world of chips and master the future of technology</p>
+        <div class="reg-time">
+          🕒 報名期間 / Registration Period:
+          <b>即日起～2026.05.14</b>
+        </div>
+        <div class="click-go">👉 點擊前往報名 / Click to Register</div>
+      </a>
+
+      <a href="https://itouch.cycu.edu.tw/go/?w=15435@acpm3" target="_blank" class="activity-card">
+        <div class="event-date">2026 / 05 / 20</div>
+        <h3>跨領域人才職涯發展座談會<br>Interdisciplinary Talent Career Seminar</h3>
+        <p>跨出領域界線，開啟無限可能<br>Break out of boundaries and create unlimited career opportunities</p>
+        <div class="reg-time">
+          🕒 報名期間 / Registration Period:
+          <b>即日起～2026.05.19</b>
+        </div>
+        <div class="click-go">👉 點擊前往報名 / Click to Register</div>
+      </a>
     </div>
   </div>
-</div>
 
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script>
 function openGift() {
   const gift = document.getElementById("gift");
+  const giftArea = document.getElementById("gift-area");
   const activities = document.getElementById("activities");
-
   gift.classList.add("open");
-
+  confetti({ particleCount: 800, spread: 150, origin: { y: 0.6 }, colors: ['#ff0000', '#ffd700', '#ffffff', '#0000ff', '#00ff00'] });
   setTimeout(() => {
-    gift.style.display = "none";
-    activities.style.display = "block";
-  }, 700);
+    giftArea.style.display = "none";
+    activities.style.display = "flex";
+  }, 750);
 }
 </script>
 

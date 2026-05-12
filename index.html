@@ -3,16 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  
   <title>5月活動大禮包</title>
 
-  <meta property="og:title" content="5月份活動指南">
-  <meta property="og:description" content="探索專為國際學生設計的職涯發展、企業說明會與媒合活動。">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ray67861.github.io/Event-Gift/preview-image.png"> 
-
 <style>
-  /* --- 豪華背景系統 (來自第一版) --- */
+  /* --- 豪華背景系統 --- */
   body {
     margin: 0;
     font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
@@ -32,7 +26,6 @@
     flex-direction: column;
   }
 
-  /* 華麗金色外框 */
   body::before {
     content: "";
     position: fixed;
@@ -45,13 +38,10 @@
     box-shadow: inset 0 0 30px rgba(255, 215, 0, 0.3);
   }
 
-  /* 背景裝飾：飛機與圖示 */
   .bg-decor { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
   .plane { position: absolute; font-size: 55px; filter: drop-shadow(0 0 20px rgba(255,255,255,0.4)); animation: flight 22s linear infinite; z-index: 5; }
   @keyframes flight {
     0% { transform: translate(-15vw, 60vh) rotate(15deg); opacity: 0; }
-    10% { opacity: 0.8; }
-    90% { opacity: 0.8; }
     100% { transform: translate(115vw, 10vh) rotate(15deg); opacity: 0; }
   }
   .item { position: absolute; font-size: 90px; filter: opacity(0.35) brightness(1.2); }
@@ -71,21 +61,34 @@
   }
   .gift-box:hover { transform: scale(1.05) rotate(2deg); }
   
-  /* 絲帶與蝴蝶結 (解決之前消失的問題) */
   .ribbon-v { position: absolute; width: 50px; height: 100%; background: #facc15; left: 50%; transform: translateX(-50%); z-index: 2; }
   .ribbon-h { position: absolute; width: 100%; height: 50px; top: 50%; transform: translateY(-50%); background: #facc15; z-index: 1; }
+  
+  /* 蝴蝶結修正區 */
   .bow {
     position: absolute; top: -40px; left: 50%; transform: translateX(-50%);
     width: 180px; height: 90px; z-index: 15;
   }
   .bow::before, .bow::after {
-    content: ""; position: absolute; width: 80px; height: 80px; background: #facc15;
+    content: ""; position: absolute; width: 90px; height: 90px; background: #facc15;
     border-radius: 70% 70% 10% 70%; box-shadow: 0 8px 15px rgba(0,0,0,0.3);
   }
-  .bow::before { left: 10px; transform: rotate(-35deg); }
-  .bow::after { right: 10px; border-radius: 70% 70% 70% 10%; transform: rotate(35deg); }
+  .bow::before { left: 5px; transform: rotate(-35deg); }
+  .bow::after { right: 5px; border-radius: 70% 70% 70% 10%; transform: rotate(35deg); }
 
-  /* 提示文字 */
+  /* 新增中間圓點 (Knot) */
+  .bow-knot {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 55px; height: 55px;
+    background: radial-gradient(circle at 30% 30%, #ffeb3b, #facc15 60%, #d4ac0d);
+    border-radius: 50%;
+    z-index: 20;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    border: 2px solid rgba(0,0,0,0.05);
+  }
+
   .click-hint { color: #ffd700; font-size: 22px; font-weight: 900; animation: hintPulse 2s infinite ease-in-out; margin-bottom: 40px; }
   @keyframes hintPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); text-shadow: 0 0 20px #ffd700; } }
 
@@ -105,13 +108,12 @@
   .activity-card:hover { transform: translateY(-15px); box-shadow: 0 0 0 10px #ffd700, 0 45px 90px rgba(0,0,0,0.8); }
   
   .event-date { font-size: 17px; color: #64748b; margin-bottom: 15px; font-weight: 800; }
-  .activity-card h3 { font-size: 21px; color: #ef4444; margin: 0 0 20px 0; text-align: center; }
-  
-  /* 報名按鈕區 */
+  .activity-card h3 { font-size: 21px; color: #ef4444; margin: 0 0 20px 0; text-align: center; font-weight: 900; }
+  .activity-card p { text-align: center; line-height: 1.5; }
+
   .reg-time { width: 100%; border-top: 1px dashed #cbd5e1; padding-top: 15px; font-size: 14px; color: #64748b; margin-top: auto; }
   .click-go { margin-top: 15px; font-size: 16px; font-weight: 900; color: #ef4444; }
 
-  /* 開箱動畫 */
   .open { animation: openBox 0.8s forwards; }
   @keyframes openBox { 100% { transform: scale(0) rotate(720deg); opacity: 0; } }
 </style>
@@ -129,7 +131,9 @@
   <div class="container">
     <div id="gift-area">
       <div id="gift" class="gift-box" onclick="openGift()">
-        <div class="bow"></div>
+        <div class="bow">
+          <div class="bow-knot"></div>
+        </div>
         <div class="ribbon-v"></div>
         <div class="ribbon-h"></div>
       </div>
@@ -141,7 +145,7 @@
       
       <a href="https://itouch.cycu.edu.tw/go/?w=15434@acpm3" target="_blank" class="activity-card">
         <div class="event-date">2026 / 05 / 15</div>
-        <h3>日月光半導體製造股份有限公司說明會<br>ASE Company Info Session</h3>
+        <h3>日月光半導體說明會<br>ASE Company Info Session</h3>
         <p>走進晶片世界，掌握科技未來<br>Step into the world of chips and master the future of technology</p>
         <div class="reg-time">🕒 報名：即日起～2026.05.14</div>
         <div class="click-go">👉 點擊前往報名 / Register</div>

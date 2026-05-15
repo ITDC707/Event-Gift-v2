@@ -76,7 +76,6 @@
   .bow::before { left: 5px; transform: rotate(-35deg); }
   .bow::after { right: 5px; border-radius: 70% 70% 70% 10%; transform: rotate(35deg); }
 
-  /* 新增中間圓點 (Knot) */
   .bow-knot {
     position: absolute;
     top: 50%; left: 50%;
@@ -104,15 +103,35 @@
     border: 6px solid #facc15; transition: 0.4s; text-decoration: none;
     box-shadow: 0 0 0 8px white, 0 35px 70px rgba(0,0,0,0.7);
     display: flex; flex-direction: column; align-items: center;
+    position: relative; overflow: hidden;
   }
   .activity-card:hover { transform: translateY(-15px); box-shadow: 0 0 0 10px #ffd700, 0 45px 90px rgba(0,0,0,0.8); }
   
+  /* 已結束卡片的特殊樣式 */
+  .disabled-card {
+    opacity: 0.75;
+    border-color: #cbd5e1;
+    box-shadow: 0 0 0 8px white, 0 20px 40px rgba(0,0,0,0.5);
+    pointer-events: none; /* 讓卡片無法點擊開新分頁 */
+  }
+  .disabled-card:hover { transform: none; box-shadow: 0 0 0 8px white, 0 20px 40px rgba(0,0,0,0.5); }
+
+  /* 「已結束」頂部紅標 */
+  .closed-badge {
+    position: absolute; top: 15px; right: 15px;
+    background: #ef4444; color: white; padding: 6px 14px;
+    border-radius: 20px; font-size: 14px; font-weight: 900;
+    box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+  }
+
   .event-date { font-size: 17px; color: #64748b; margin-bottom: 15px; font-weight: 800; }
   .activity-card h3 { font-size: 21px; color: #ef4444; margin: 0 0 20px 0; text-align: center; font-weight: 900; }
-  .activity-card p { text-align: center; line-height: 1.5; }
+  .disabled-card h3 { color: #64748b; } /* 結束的活動標題變灰調 */
+  .activity-card p { text-align: center; line-height: 1.5; margin: 0 0 20px 0; }
 
   .reg-time { width: 100%; border-top: 1px dashed #cbd5e1; padding-top: 15px; font-size: 14px; color: #64748b; margin-top: auto; }
   .click-go { margin-top: 15px; font-size: 16px; font-weight: 900; color: #ef4444; }
+  .click-go.ended { color: #64748b; }
 
   .open { animation: openBox 0.8s forwards; }
   @keyframes openBox { 100% { transform: scale(0) rotate(720deg); opacity: 0; } }
@@ -143,12 +162,13 @@
     <div id="activities" class="activities">
       <div class="title" style="width: 100%;">✨ 5月精選活動推薦 ✨</div>
       
-      <a href="https://itouch.cycu.edu.tw/go/?w=15434@acpm3" target="_blank" class="activity-card">
+      <a href="#" class="activity-card disabled-card">
+        <div class="closed-badge">已結束 / Closed</div>
         <div class="event-date">2026 / 05 / 15</div>
         <h3>日月光半導體說明會<br>ASE Company Info Session</h3>
         <p>走進晶片世界，掌握科技未來<br>Step into the world of chips and master the future of technology</p>
         <div class="reg-time">🕒 報名：即日起～2026.05.14</div>
-        <div class="click-go">👉 點擊前往報名 / Register</div>
+        <div class="click-go ended">🔒 已結束 / Ended</div>
       </a>
 
       <a href="https://itouch.cycu.edu.tw/go/?w=15435@acpm3" target="_blank" class="activity-card">
